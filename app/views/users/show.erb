@@ -1,0 +1,6 @@
+
+Hello <%= @user.user_name %>, welcome to the bulb!
+<form action='/logout' method='post'>
+  <input type="hidden" name="_method" value="delete">
+  <input type='submit' value='Log me out!'>
+</form>

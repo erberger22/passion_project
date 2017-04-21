@@ -1,0 +1,6 @@
+body {
+    background-size: 100%;
+    background-image: url("../photos/bulb_scenic.jpg");
+    background-repeat: no-repeat;
+    padding: 2%;
+}
