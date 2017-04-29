@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   validates :user_name, :email, presence: true
+
+  has_many :photos
+
   # users.password_hash in the database is a :string
   include BCrypt
 
