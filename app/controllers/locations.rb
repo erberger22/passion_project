@@ -4,6 +4,8 @@ get '/locations' do
 end
 
 get '/locations/:id' do
+  p 'i am here'
   @location = Location.find(params[:id])
-  erb :'locations/show'
+
+  erb :'locations/show', layout: false
 end
