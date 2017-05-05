@@ -1,5 +1,4 @@
 post '/photos' do
-  p params
   @photo = Photo.new(params[:photo])
   if @photo.save
 

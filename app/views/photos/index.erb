@@ -1,5 +1,4 @@
 <h2> Photos for <%= @location.name %></h2>
-<%= erb:'_location_buttons', locals: {locations: @locations}  %>
 <div id='div-container'>
   <% @photos.each do |photo| %>
     <div>
@@ -13,3 +12,4 @@
     </div>
   <% end %>
 </div>
+<%= erb :'_location_buttons', locals: {locations: @locations}  %>
