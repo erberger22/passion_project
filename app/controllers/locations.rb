@@ -5,6 +5,7 @@ end
 
 get '/locations/:id' do
   @location = Location.find(params[:id])
-  @photos = @location.photos.to_xml
-  erb :'locations/show', layout: false
+  @photos = @location.photos.to_json
+  p @photos.first
+  erb :'locations/show.js', layout: false
 end
