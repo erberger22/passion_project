@@ -92,3 +92,8 @@ body {
 #div-container {
   width: 200px;
 }
+
+.display-img-on-map {
+  width: 100px;
+  height: 100px;
+}

@@ -18,33 +18,19 @@
       <input type='submit' value='Save'/>
     </form>
   </div>
-  <!-- <div id="message">Location saved</div> -->
-
+  <div id="message"></div>
+  <div id='json-of-photos'"><%= @photos %></div>
   <script>
    var map;
    var marker;
    var infowindow;
    var messagewindow;
 
-  $(document).ready(function() {
-    addCoordinatesToPhotoForm()
+   $(document).ready(function() {
+    // addCoordinatesToPhotoForm();
   })
 
 
-  function addCoordinatesToPhotoForm(){
-    var firstClick = true;
-    $("#googleMap").on('click', function(event) {
-      if (firstClick == true) {
-        firstClick = false
-        event.preventDefault();
-        var lat = marker.position.lat().toString();
-        var lng = marker.position.lng().toString();
-        console.log(lat)
-        var inputsToInsert = "<input type='hidden' value = " + lat + " name='photo[latitude]'/><input type='hidden' value = " + lng + " name='photo[longetude]'/>";
-        $('#form form').append(inputsToInsert)
-      }
-    })
-  }
 
    function myMap() {
     var mapProp= {
@@ -53,27 +39,13 @@
       mapTypeId: 'satellite'
     };
 
-    // function saveData() {
-    //   var user_name = escape(document.getElementById('name').value);
-    //   var description = escape(document.getElementById('description').value);
-    //   // var type = document.getElementById('type').value;
-    //   var latlng = marker.getPosition();
-    //   var url = escape(document.getElementById('photo_url').value);
-
-    // }
-
     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    // this is for creating existing markers
-    // var uluru = {lat: 37.890116, lng: -122.324145};
-    // var marker = new google.maps.Marker({
-    //   position: uluru,
-    //   map: map
-    // });
+
     infowindow = new google.maps.InfoWindow({
       content: document.getElementById('form')
     })
 
-    messagewindow = new google.maps.InfoWindow({
+    messageWindow = new google.maps.InfoWindow({
       content: document.getElementById('message')
     });
 
@@ -81,14 +53,66 @@
       marker = new google.maps.Marker({
         position: event.latLng,
         map: map
-      });
-
+      }, addCoordinatesToPhotoForm());
 
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map, marker);
       });
     });
+
+
+    var photos = $('#json-of-photos');
+    for( i = 0; i < JSON.parse(photos[0].innerText).length; i++) {
+      var id = JSON.parse(photos[0].innerText)[i].id;
+      var photo = JSON.parse(photos[0].innerText)[i].photo;
+      var description = JSON.parse(photos[0].innerText)[i].description;
+      var longetude = JSON.parse(photos[0].innerText)[i].longetude;
+      var latitude = JSON.parse(photos[0].innerText)[i].latitude;
+      var point = {lat: Number(latitude), lng: Number(longetude)};
+      console.log(point)
+      var crazyMarker = new google.maps.Marker({
+        map: map,
+        position: point,
+        lable: id.toString()
+      });
+      if (i == 0) {
+        var thisTag0 = '<img class= "display-img-on-map" src="' + photo + '">'
+        crazyMarker.addListener('click', function() {
+         messageWindow.setContent(thisTag0);
+         messageWindow.open(map, crazyMarker);
+       });
+      }
+      if (i == 1) {
+        var thisTag1 = '<img class= "display-img-on-map" src="' + photo + '">'
+        crazyMarker.addListener('click', function() {
+         messageWindow.setContent(thisTag1);
+         messageWindow.open(map, crazyMarker);
+       });
+      }
+      if (i == 3) {
+        var thisTag3 = '<img class= "display-img-on-map" src="' + photo + '">'
+        crazyMarker.addListener('click', function() {
+         messageWindow.setContent(thisTag3);
+         messageWindow.open(map, crazyMarker);
+       });
+      }
+    }
+}
+  function addCoordinatesToPhotoForm(){
+    var firstClick = true;
+    $("#googleMap").on('click', function(event) {
+      if (firstClick == true) {
+        firstClick = false
+          event.preventDefault();
+          console.log(marker)
+          var lat = marker.position.lat().toString();
+          var lng = marker.position.lng().toString();
+          var inputsToInsert = "<input type='hidden' value = " + lat + " name='photo[latitude]'/><input type='hidden' value = " + lng + " name='photo[longetude]'/>";
+          $('#form form').append(inputsToInsert)
+      }
+    })
   }
+
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['KEY'] %>&callback=myMap"></script>
