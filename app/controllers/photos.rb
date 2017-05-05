@@ -9,3 +9,10 @@ post '/photos' do
     erb :'users/new'
   end
 end
+
+get "/locations/:location_id/photos" do
+  @locations = Location.all
+  @location = Location.find(params[:location_id])
+  @photos = @location.photos
+  erb :'photos/index'
+end
