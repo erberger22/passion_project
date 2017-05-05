@@ -17,6 +17,6 @@ end
 
 get "/users/:id" do
   @user = User.find(params[:id])
-  p @user
+  @locations = Location.all
   erb :'users/show'
 end

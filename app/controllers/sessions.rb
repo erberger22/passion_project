@@ -5,6 +5,7 @@ end
 
 post '/login'  do
   login
+  redirect '/'
 end
 
 delete '/logout' do

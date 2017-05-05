@@ -7,25 +7,6 @@
 </form> -->
 <!-- <a href='/users/new'>I don't have an account</a> -->
 
-<div id='location_1'>
-  <form class='button'>
-    <input type="submit" value="amphatheater">
-  </form>
-</div>
-<div id='location_2'>
-  <form class='button'>
-    <input type="submit" value="sculpture cove">
-  </form>
-</div>
-<div id='location_3'>
-  <form class='button'>
-    <input type="submit" value="yellowbrick road">
-  </form>
-</div>
-<div id='location_4'>
-  <form class='button'>
-    <input type="submit" value="Lagoon">
-  </form>
-</div>
+<%= erb :'_location_buttons', locals: {locations: @locations}  %>
 
 

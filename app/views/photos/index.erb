@@ -1,0 +1,14 @@
+<h2> Photos for <%= @location.name %></h2>
+<div id='div-container'>
+  <% @photos.each do |photo| %>
+    <div>
+      <img class='photo-holder' src="<%= photo.photo %>">
+      <span>
+        credit: <%= photo.user.user_name %>
+      </span>
+      <div>
+        description: <%= photo.description %>
+      </div>
+    </div>
+  <% end %>
+</div>
