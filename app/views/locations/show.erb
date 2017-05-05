@@ -39,8 +39,11 @@
       if (firstClick == true) {
         firstClick = false
         event.preventDefault();
-        var latlng = marker.position;
-        console.log(latlng)
+        var lat = marker.position.lat().toString();
+        var lng = marker.position.lng().toString();
+        console.log(lat)
+        var inputsToInsert = "<input type='hidden' value = " + lat + " name='photo[latitude]'/><input type='hidden' value = " + lng + " name='photo[longetude]'/>";
+        $('#form form').append(inputsToInsert)
       }
     })
   }
