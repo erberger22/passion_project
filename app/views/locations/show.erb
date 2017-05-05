@@ -13,8 +13,6 @@
     <form method='post' action='/photos'>
       <input type='hidden' value = '<%= current_user.id %>' name='photo[user_id]'/>
       <input type='hidden' value = '<%= @location.id %>' name='photo[location_id]'/>
-      <input type='hidden' value = '<%= @location.id %>' name='photo[location_id]'/>
-      <input type='hidden' value = '<%= @location.id %>' name='photo[location_id]'/>
       Description:<input type='text' name='photo[description]'/>
       Photo URL:<input type='text' name='photo[photo]'/>
       <input type='submit' value='Save'/>
